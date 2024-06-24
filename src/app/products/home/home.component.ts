@@ -16,12 +16,13 @@ import { window } from 'rxjs';
 export class HomeComponent implements OnInit {
   appStore: any;
   constructor(private store: Store) {}
-  products$ = this.store.pipe(select(selectproducts));
+  products$: any;
   deleteModal: any;
   idToDelete: number = 0;
   
   ngOnInit(): void {
     this.store.dispatch(invokeproductsAPI());
+    this.products$ = this.store.pipe(select(selectproducts));
   }
   displayStyle = "none"; 
   
