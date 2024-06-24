@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "10",
+      "author": "Jhon walker",
+      "name": "Habbit",
+      "cost": 444
+    },
+    {
+      "id": "11",
+      "author": "Jhon walker",
+      "name": "Habbit2",
+      "cost": 333
+    },
+    {
+      "id": 0,
+      "author": "hjkfk",
+      "name": "dshfkjs",
+      "cost": 343
+    }
+  ]
+}
