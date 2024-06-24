@@ -1,0 +1,96 @@
+
+<div class="Table">
+  <div class="Title">
+      <p>Product Management Application</p>
+  </div>
+  <div class="container">
+      <a routerLink="/add" class="btn btn-dark margin">Add product</a>
+    </div>
+  <div class="Heading">
+      <div class="Cell">
+          <p>Id</p>
+      </div>
+      <div class="Cell">
+          <p>Name</p>
+      </div>
+      <div class="Cell">
+          <p>Price</p>
+      </div>
+      <div class="Cell">
+        <p>Quantity</p>
+    </div>
+    <div class="Cell">
+      <p>Edit</p>
+  </div>
+  <div class="Cell">
+    <p>Delete</p>
+</div>
+  </div>
+  <div class="Row" *ngFor="let product of products$ | async">
+      <div class="Cell">
+          <p>{{product.id}}</p>
+      </div>
+      <div class="Cell">
+          <p>{{product.name}}</p>
+      </div>
+      <div class="Cell">
+          <p>{{product.price}}</p>
+      </div>
+      <div class="Cell">
+        <p>{{product.quantity}}</p>
+    </div>
+    <div class="Cell">
+      <div class="card-body">
+        <a [routerLink]="['/edit',product.id]" class="btn btn-dark">Edit </a>
+      </div>
+    </div>
+    <div class="Cell">
+      <button mat-raised-button class="btn btn-dark"  (click)="openPopup(product.id)" >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+<!-- <div class="container mt-2">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let product of products$ | async">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ product.author }}</li>
+            <li class="list-group-item">${{ product.cost }}</li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <a [routerLink]="['/edit',product.id]" class="btn btn-dark">Edit product</a>
+        </div>
+        <button mat-raised-button class="btn btn-dark"  (click)="openPopup(product.id)" >
+          Delete
+        </button>
+      </div>
+    </div> 
+    </div>
+    -->
+   
+    
+  
+  <!-- Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}"> 
+  <div class="modal-dialog" role="document"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h4 class="modal-title">Confirm Delete</h4> 
+      </div> 
+      <div class="modal-body">
+        Are sure to delete this item?
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleterecord()">Confirm Delete</button>
+      </div> 
+    </div> 
+  </div> 
+</div>
+
