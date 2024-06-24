@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { EMPTY, map, mergeMap, switchMap, withLatestFrom } from 'rxjs';
+import { EMPTY, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs';
 import { productsService } from '../products.service';
 import { productsFetchAPISuccess, invokeproductsAPI,invokeSaveNewProductAPI,saveNewProductAPISucess ,invokeUpdateProductAPI,updateProductAPISucess, invokeDeleteProductAPI, deleteProductAPISuccess} from './products.action';
 import { selectproducts } from './products.selector';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
+import { Router } from '@angular/router';
  
 @Injectable()
 export class productsEffect {
@@ -14,7 +15,8 @@ export class productsEffect {
     private actions$: Actions,
     private productsService: productsService,
     private store: Store,
-    private appStore: Store<Appstate>
+    private appStore: Store<Appstate>,
+    private router: Router
   ) {}
  
   loadAllproducts$ = createEffect(() =>
@@ -40,6 +42,7 @@ saveNewproduct$ = createEffect(() => {
         setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
       );
       return this.productsService.create(action.newProduct).pipe(
+        tap(()=>{this.router.navigateByUrl('/');}),
         map((data) => {
           this.appStore.dispatch(
             setAPIStatus({
@@ -63,6 +66,7 @@ updateproductAPI$ = createEffect(() => {
         setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
       );
       return this.productsService.update(action.updateProduct).pipe(
+        tap(()=>{this.router.navigateByUrl('/');}),
         map((data) => {
           this.appStore.dispatch(
             setAPIStatus({

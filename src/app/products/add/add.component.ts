@@ -36,7 +36,7 @@ export class AddComponent implements OnInit {
         this.appStore.dispatch(
           setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
         );
-         this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       }
     });
   }
