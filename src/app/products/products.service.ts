@@ -12,7 +12,7 @@ export class productsService {
     return this.http.get<products[]>('https://localhost:7274/api/product/GetProduct');
   }
   create(payload: products) {
-    return this.http.post<products>('https://localhost:7274/api/product/Addproducts', payload);
+    return this.http.post<products>('https://localhost:7274/api/product/AddProduct', payload);
   }
   update(payload: products) {
     return this.http.put<products>(
